@@ -11,5 +11,8 @@
             ?>
         </div>
         <?php echo $this->form; ?>
+        <div class="col-12 col-sm-12 files-upload-form">
+            <p class="edit"><a class="button"  href='<?php echo $this->url(array('controller' => 'files', 'action' => 'delete', 'fileid' => $this->fileid )) ?>'>Datei löschen</a></p>
+        </div>
     </div>
 </div>

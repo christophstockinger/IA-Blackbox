@@ -1,0 +1,17 @@
+<div class="content">
+    <h2>Datei löschen</h2>
+
+    <div class="row files">
+        <div class="col-12 col-sm-12 files-upload-form">
+            <?php $message = $this->message;
+
+            if (isset($message)) {
+                echo "<p class='error'>" . $message . "</p>";
+            } else {
+                echo $this->form;
+            }
+            ?>
+        </div>
+
+    </div>
+</div>
