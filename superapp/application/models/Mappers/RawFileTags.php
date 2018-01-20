@@ -95,20 +95,15 @@ class Application_Model_Mappers_RawFileTags
         }
     }
 
-    public function delete($tags, $fileid)
+    public function delete($fileid)
     {
         try {
             $return = false;
             $fileid = (int)$fileid;
 
 
-            foreach ($tags as $tag) {
-                $a = $tag->getTag();
-
-                $row = $this->getTable()->delete("FILEID = " . $fileid);
-                //$row->save();
-                $return = true;
-            }
+            $this->getTable()->delete("FILEID = " . $fileid);
+            $return = true;
 
             return $return;
         } catch (Exception $er) {

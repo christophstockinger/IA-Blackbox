@@ -30,7 +30,8 @@ class Application_Model_Mappers_RawFiles
         return $model;
     }
 
-    public function create(array $data) {
+    public function create(array $data)
+    {
         try {
             $inputData = array(
                 'FILENAME' => $data['namehash'],
@@ -53,19 +54,20 @@ class Application_Model_Mappers_RawFiles
         }
     }
 
-    public function fetchFilesByUserid($userid) {
+    public function fetchFilesByUserid($userid)
+    {
         $select = $this->getTable()->select();
-        $select->where("USERID = " . (int) $userid);
+        $select->where("USERID = " . (int)$userid);
 
         $rows = $this->getTable()->fetchAll($select);
 
-        if (is_null($rows)){
-           return false;
+        if (is_null($rows)) {
+            return false;
         }
 
         $list = array();
 
-        foreach ($rows as $row){
+        foreach ($rows as $row) {
             $model = $this->getModel($row);
 
             $list[] = $model;
@@ -75,44 +77,46 @@ class Application_Model_Mappers_RawFiles
         return $list;
     }
 
-    public function fetchFilesBySearchTag($tags) {
+    public function fetchFilesBySearchTag($tags)
+    {
         try {
-        $results = array();
+            $results = array();
 
-        foreach ($tags as $tag) {
-            if ($tag != "") {
+            foreach ($tags as $tag) {
+                if ($tag != "") {
 
-                $select = $this->getTable()->select();
-                $select->where("FILEDISPLAYNAME LIKE '%$tag%' OR FILEFORMAT LIKE '%$tag%'");
+                    $select = $this->getTable()->select();
+                    $select->where("FILEDISPLAYNAME LIKE '%$tag%' OR FILEFORMAT LIKE '%$tag%'");
 
-                $rows = $this->getTable()->fetchAll($select);
+                    $rows = $this->getTable()->fetchAll($select);
 
-                foreach ($rows as $row) {
-                    $model = $this->getModel($row);
+                    foreach ($rows as $row) {
+                        $model = $this->getModel($row);
 
-                    $results[] = $model;
+                        $results[] = $model;
+                    }
                 }
-            }
 
-        }
-        return $results;
-    } catch (Exception $e) {
+            }
+            return $results;
+        } catch (Exception $e) {
             return false;
         }
     }
 
-    public function fetchFileByFileid($fileid) {
+    public function fetchFileByFileid($fileid)
+    {
         try {
             $select = $this->getTable()->select();
-            $select->where("FILEID = " . (int) $fileid);
+            $select->where("FILEID = " . (int)$fileid);
 
             $row = $this->getTable()->fetchRow($select);
 
-            if (is_null($row)){
+            if (is_null($row)) {
                 // return false;
             }
 
-                $model = $this->getModel($row);
+            $model = $this->getModel($row);
 
 
             return $model;
@@ -121,8 +125,7 @@ class Application_Model_Mappers_RawFiles
         }
     }
 
-
-    public function update ($data,$fileid) {
+    public function update($data, $fileid) {
         try {
             $inputArray = array(
                 'FILEDISPLAYNAME' => $data['filedisplayname'],
@@ -138,6 +141,21 @@ class Application_Model_Mappers_RawFiles
             return $row;
         } catch (Exception $e) {
             return 0;
+        }
+    }
+
+    public function delete($fileid)
+    {
+        try {
+            $fileid = (int)$fileid;
+
+            $this->getTable()->delete("FILEID = " . $fileid);
+            $return = true;
+
+
+            return $return;
+        } catch (Exception $er) {
+            return false;
         }
     }
 

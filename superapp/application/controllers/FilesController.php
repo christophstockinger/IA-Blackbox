@@ -296,8 +296,7 @@ class FilesController extends Zend_Controller_Action
 
 
             // Delete all Tags
-            $tags = $tagmapper->fetchAllByFileid((int)$fileid);
-            $deleteOldTags = $tagmapper->delete($tags, $fileid);
+            $deleteOldTags = $tagmapper->delete($fileid);
 
             // Add new Tags
             $newtags = explode(" ", $data['tags']);
@@ -335,10 +334,40 @@ class FilesController extends Zend_Controller_Action
         // Form create
         $form = new Application_Form_FilesEdit($this->_thisUserSettings->getSaveCloud(), $filedata, $tags);
         $this->view->form = $form;
+
+        $this->view->fileid = $fileid;
+    }
+
+    public function deleteAction()
+    {
+        $fileid = $this->getRequest()->getParam('fileid');
+
+
+        $form = new Application_Form_FilesDelete($fileid);
+
+        $data = $this->getRequest()->getPost();
+
+        if (!empty($data) && isset($data['löschen'])) {
+            $tagmapper = new Application_Model_Mappers_RawFileTags();
+            $tagdelete = $tagmapper->delete((int)$fileid);
+            $filemapper = new Application_Model_Mappers_RawFiles();
+            $filedelete = $filemapper->delete((int)$fileid);
+
+            if ($tagdelete && $filedelete) {
+                $this->view->message = "Die Datei wurde erfolgreich gelöscht.";
+            } else {
+                $this->view->form = $form;
+            }
+        }
+
+        $this->view->form = $form;
+
     }
 
 
 }
+
+
 
 
 
