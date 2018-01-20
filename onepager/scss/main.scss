@@ -1,0 +1,466 @@
+@charset "utf-8";
+/**
+ * Copyright (c) 2017 All rights reserved.
+ * Christoph Stockinger
+ * Bahnhofstraße 45
+ * 94469 Deggendorf
+ * hello@christophstockinger.de
+ * www.christophstockinger.de
+ * erstellt am 06.11.17 18:42
+ **/
+
+/**
+* Onepager Interapplikationen Blackbox
+* Version 1.0
+**/
+
+// Farben
+$maincolor: #154098;
+$darkcolor: #0A0A0A;
+$brightcolor: #FFFFFF;
+
+// Font
+@import url(../css/font.css);
+$boldfont: 'Work Sans Bold', sans-serif;
+$regularfont: 'Work Sans Regular', sans-serif;
+$lightfont: 'Work Sans Light', sans-serif;
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $boldfont;
+  font-weight: bold;
+  line-height: 200%;
+  margin: 0;
+}
+
+p {
+  font-size: 15px;
+  line-height: 160%;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.button {
+  border: 1px solid $maincolor;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-family: $lightfont;
+  text-transform: uppercase;
+  color: $brightcolor;
+
+  &:hover {
+    color: $brightcolor;
+    background-color: $maincolor;
+  }
+}
+
+header {
+  background-color: $brightcolor;
+  height: auto;
+  padding: 10px 10%;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  // Logo
+  .brand {
+    display: inline-block;
+    width: 100%;
+    a {
+      img {
+        height: 50px;
+      }
+    }
+  }
+
+  // Schnell-Links für Registierung und Anmeldung
+  .fasticons {
+    position: absolute;
+    right: 10%;
+    top: 25px;
+
+    @media (max-width: 768px) {
+      position: relative;
+      width: 100%;
+      margin: 10%;
+      float: left;
+      display: none;
+
+      a {
+        display: block;
+        margin: 0 0 10px 0;
+      }
+    }
+
+    .registry {
+      color: $maincolor;
+
+      &:hover {
+        color: $brightcolor;
+      }
+    }
+
+    .login {
+      color: $darkcolor;
+      border: 1px solid $darkcolor;
+
+      &:hover {
+        color: $brightcolor;
+        background-color: $darkcolor;
+      }
+    }
+  }
+}
+
+main {
+  width: 100%;
+  height: 100%;
+
+  section {
+    width: 100%;
+    height: auto;
+    position: relative;
+    float: left;
+
+    padding: 50px 10%;
+    box-sizing: border-box;
+
+    // Teaser Line im Hero Image
+    .slogan_line {
+      position: absolute;
+      bottom: 100px;
+      width: 80%;
+      text-align: center;
+
+      h4 {
+        font-size: 20px;
+        color: $brightcolor;
+        text-transform: uppercase;
+      }
+    }
+
+    // Bottom Icon
+    .bottom-icon {
+      width: 80%;
+      height: auto;
+      position: absolute;
+      bottom: 25px;
+      text-align: center;
+
+      a {
+        width: 25px;
+        display: block;
+        margin: 0 auto;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .section_wrapper {
+      .headline {
+        margin: 0 0 50px;
+        h2 {
+          font-size: 28px;
+          text-align: center;
+          text-transform: uppercase;
+          font-family: $lightfont;
+          font-weight: normal;
+        }
+      }
+      div {
+        h5 {
+          font-size: 18px;
+          color: $maincolor;
+          text-transform: uppercase;
+        }
+
+        p {
+          color: $brightcolor;
+        }
+      }
+    }
+  }
+
+  #hero_image {
+    background-image: url("../images/background/weltall.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    z-index: 995;
+
+    // Suchfeld im Hero-Image
+    .searchbox {
+      width: 500px;
+      height: auto;
+      position: absolute;
+      top: 200px;
+      left: calc((100% - 500px) / 2);
+
+      @media (max-width: 768px) {
+        width: 80%;
+        left: 10%;
+      }
+
+      .searchtagbox {
+        width: 450px;
+        height: 50px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 14px;
+        font-family: $regularfont;
+        border: 1px solid $maincolor;
+        float: left;
+        display: block;
+        background-color: $brightcolor;
+
+
+        input {
+          border: 0;
+          width: 100%;
+          height:100%;
+          font-size: 15px;
+          font-family: $regularfont;
+        }
+
+        @media (max-width: 768px) {
+          width: 75%;
+        }
+
+      }
+
+      .searchbutton {
+        background-color: $maincolor;
+        width: 50px;
+        height: 50px;
+        border: 0;
+        float: left;
+        display: block;
+
+        @media (max-width: 768px) {
+          width: 25%;
+        }
+
+        img {
+          width: 40px;
+          padding: 5px;
+          height: auto;
+
+          @media (max-width: 768px) {
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
+
+  #features, #registry {
+    background-color: $darkcolor;
+
+    div {
+      // Überschrift
+      .headline {
+        h2 {
+          color: $maincolor;
+        }
+      }
+
+      // Was kann Blackbox? - 3 Schritte-Navigation
+      .feature {
+        text-align: center;
+
+        img {
+          width: 50%;
+          margin: 0 0 25px;
+          height: auto;
+
+          @media (max-width: 768px) {
+            width: auto;
+            height: 75px;
+          }
+        }
+
+      }
+
+      // Registrierungsbutton
+      .registrybutton {
+        text-align: center;
+      }
+
+      // Blackbox Enterprise Box
+      .enterprise {
+        border-top: 1px solid $brightcolor;
+        margin: 50px 0 0 0;
+        padding: 50px 0 0 0;
+
+        div {
+          @media (max-width: 768px) {
+            text-align: center;
+          }
+
+          img {
+            height: 100px;
+            float: right;
+
+            @media (max-width: 768px) {
+              float: none;
+            }
+          }
+        }
+      }
+
+      // Dropbox-Connect-Box
+      .dropbox {
+        border-top: 1px solid $brightcolor;
+        margin: 50px 0 0 0;
+        padding: 50px 0 0 0;
+
+        div {
+          @media (max-width: 768px) {
+            text-align: center;
+          }
+          img {
+            float: right;
+
+            @media (max-width: 768px) {
+              float: none;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  // Testimonial Slider
+  #testimonial {
+    div {
+      .swiper-container {
+        .swiper-wrapper {
+          .swiper-slide {
+            .testimonial_item {
+              width: 60%;
+              margin: 0 20%;
+
+              blockquote {
+                font-size: 14px;
+                font-style: italic;
+                line-height: 160%;
+                color: $darkcolor;
+              }
+
+              .testimonial_name {
+                font-size: 12px;
+                text-align: right;
+                color: $darkcolor;
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+// Footer
+footer {
+  background-color: $maincolor;
+  width: 100%;
+  padding: 10px 10%;
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+
+  div {
+    // Navigation im Fussbereich
+    .footernavi {
+      ul {
+        margin: 0;
+
+        li {
+          list-style-type: none;
+          display: inline-block;
+          margin: 0 25px;
+
+          @media (max-width: 768px) {
+            width: 100%;
+            margin: 0;
+            text-align: center;
+          }
+
+          a {
+            font-size: 14px;
+            color: $brightcolor;
+
+          }
+        }
+      }
+    }
+
+    // Social Media Icon Navigation
+    .socialmedianavi {
+
+      @media (max-width: 768px) {
+        margin: 25px 0;
+        padding: 25px 0;
+        border-top: 1px solid $brightcolor;
+        border-bottom: 1px solid $brightcolor;
+      }
+      ul {
+        margin: 0;
+
+        li {
+          list-style-type: none;
+          display: inline-block;
+          margin: 0 10px;
+
+          @media (max-width: 768px) {
+            width: 30%;
+            margin: 0;
+            text-align: center;
+          }
+
+          a {
+
+            img {
+              width: 25px;
+            }
+
+          }
+        }
+      }
+    }
+
+    // Copyright
+    .copyright {
+      p {
+        font-size: 14px;
+        color: $brightcolor;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,15 @@
+<div class="content">
+    <h2>Neue Datei hochladen</h2>
+
+    <div class="row files">
+        <div class="col-12 col-sm-12 files-upload-form">
+            <?php $errormessage = $this->errormessage;
+
+            if (isset($errormessage)) {
+                echo "<p class='error'>" . $errormessage . "</p>";
+            }
+            ?>
+        </div>
+        <?php echo $this->form; ?>
+    </div>
+</div>
