@@ -1,0 +1,41 @@
+/**
+ * Copyright (c) 2017 All rights reserved.
+ * Christoph Stockinger
+ * Bahnhofstraße 45
+ * 94469 Deggendorf
+ * hello@christophstockinger.de
+ * www.christophstockinger.de
+ * erstellt am 13.11.17 14:44
+ **/
+ 
+ /**
+ * Onepager Interapplikationen Blackbox Font
+ * Version 1.0
+ **/
+
+/* BEGIN Light */
+@font-face {
+    font-family: 'Work Sans Light';
+    src: url("fonts/WorkSans-Light.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+/* END Light */
+
+/* BEGIN Regular */
+@font-face {
+    font-family: 'Work Sans Regular';
+    src: url("fonts/WorkSans-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+/* END Regular */
+
+/* BEGIN Bold */
+@font-face {
+    font-family: 'Work Sans Bold';
+    src: url("fonts/WorkSans-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+/* END Bold */

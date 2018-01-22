@@ -1,0 +1,21 @@
+<div class="content">
+    <h2>Datei bearbeiten</h2>
+
+    <div class="row files">
+        <div class="col-12 col-sm-12 abbruch">
+            <a class='button' href="<?php echo $this->url(array('controller' => 'files', 'action' => 'index')); ?>">Abbrechen</a>
+        </div>
+        <div class="col-12 col-sm-12 files-upload-form">
+            <?php $errormessage = $this->errormessage;
+
+            if (isset($errormessage)) {
+                echo "<p class='error'>" . $errormessage . "</p>";
+            }
+            ?>
+        </div>
+        <?php echo $this->form; ?>
+        <div class="col-12 col-sm-12 files-upload-form">
+            <p class="edit"><a class="button"  href='<?php echo $this->url(array('controller' => 'files', 'action' => 'delete', 'fileid' => $this->fileid )) ?>'>Datei löschen</a></p>
+        </div>
+    </div>
+</div>

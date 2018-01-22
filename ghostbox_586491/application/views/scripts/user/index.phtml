@@ -1,0 +1,33 @@
+<div class="content">
+    <h2>BlackBox-Settings</h2>
+
+    <h3>Deine Account-Einstellungen</h3>
+    <?php
+    $user = $this->user;
+    ?>
+    <div class="row settings">
+        <div class="col-12 col-sm-12 col-lg-6 user-data">
+            <div class="row">
+                <div class="col-12 col-sm-12 headline">
+                    <h4>Persönliche Daten</h4>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 settings-attribute"><p>Vorname</p></div>
+                <div class="col-12 col-sm-12 col-md-8 settings-value"><p><?php echo $user->getFirstname(); ?></p></div>
+                <div class="col-12 col-sm-12 col-md-4 settings-attribute"><p>Nachname</p></div>
+                <div class="col-12 col-sm-12 col-md-8 settings-value"><p><?php echo $user->getLastname(); ?></p></div>
+                <div class="col-12 col-sm-12 col-md-4 settings-attribute"><p>E-Mail-Adresse</p></div>
+                <div class="col-12 col-sm-12 col-md-8 settings-value"><p><?php echo $user->getEMail(); ?></p></div>
+                <div class="col-12 col-sm-12 col-md-4 settings-attribute"><p>Password</p></div>
+                <div class="col-12 col-sm-12 col-md-8 settings-value"><p>***</p></div>
+                <div class="col-12 col-sm-12 col-md-4 settings-attribute"><p>Blackbox-Nutzer seit</p></div>
+                <div class="col-12 col-sm-12 col-md-8 settings-value">
+                    <p><?php $createdate = new DateTime($user->getCreatedate());
+                        echo $createdate->format("d.m.Y") ?></p></div>
+                <div class="col-12 col-sm-12 edit">
+                    <a href="<?php echo $this->url(array( 'controller' => 'user', 'action' => 'update' )); ?>" class="button">Bearbeiten</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

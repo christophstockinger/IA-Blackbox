@@ -1,0 +1,25 @@
+<?php $message = $this->message; ?>
+<div class="content">
+    <h2>Datei löschen</h2>
+
+    <div class="row files">
+        <div class="col-12 col-sm-12 abbruch">
+            <? if (isset($message)): ?>
+            <a class='button' href="<?php echo $this->url(array('controller' => 'files', 'action' => 'index')); ?>">Zurück zur Suche</a>
+            <? else:  ?>
+            <a class='button' href="<?php echo $this->url(array('controller' => 'files', 'action' => 'edit')); ?>">Abbrechen</a>
+            <? endif; ?>
+
+        </div>
+        <div class="col-12 col-sm-12 files-upload-form">
+
+
+            <?php if (isset($message)) : ?>
+                <p class='error'><?php echo $message; ?></p>
+            <?php else: ?>
+                <?php echo $this->form; ?>
+            <?php endif; ?>
+        </div>
+
+    </div>
+</div>
