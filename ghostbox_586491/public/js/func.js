@@ -17,15 +17,6 @@ console.log("Start!");
 $(document).ready(
     function () {
 
-        // Settings-Menü
-        $('#settings-icon').click(
-            function () {
-                console.log("geklickt!");
-                var navigation = $(this).attr('href');
-                console.log(navigation);
-                $(navigation).toggleClass('open');
-            }
-        )
 
         // First check beim laden
         cloudCheck();
@@ -52,6 +43,8 @@ console.log("Fertig!");
  * Funktion zum Überprüfen, ob die Speicherung in der Cloud aktiviert ist
  */
 function cloudCheck() {
+    console.log("geändert!");
+    console.log($('#savecloud:checked'));
     var checkbox = $('#savecloud:checked').length;
 
     var loc = $('#savelocationcloud');
@@ -69,9 +62,10 @@ function cloudCheck() {
         passl.show().addClass('half');
         userl.show().addClass('half');
         passl.show().addClass('half');
-        loc.attr('requiered', '');
-        user.attr('requiered', '');
-        pass.attr('requiered', '');
+        loc.attr('required', '');
+        user.attr('required', '');
+        pass.attr('required', '');
+        console.log("CSS und Attr gesetzt!");
     } else {
         loc.hide();
         user.hide();
@@ -79,9 +73,10 @@ function cloudCheck() {
         locl.hide();
         userl.hide();
         passl.hide();
-        loc.removeAttr('requiered');
-        user.removeAttr('requiered');
-        pass.removeAttr('requiered');
+        loc.removeAttr('required');
+        user.removeAttr('required');
+        pass.removeAttr('required');
+        console.log("CSS und Attr gelöscht!");
     }
 
 }

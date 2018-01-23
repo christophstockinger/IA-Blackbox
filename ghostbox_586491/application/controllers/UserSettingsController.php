@@ -84,6 +84,15 @@ class UserSettingsController extends Zend_Controller_Action
                         $this->_redirect($this->getHelper('url')->url(array('controller' => 'user-settings', 'action' => 'index', null), 'default', true));
                     }
                 }
+            } else {
+                $message = "";
+                if ($maxfileupload > $this->_maxFileUpload) {
+                    $message .= "<p class='error'>Du kannst maximal " . $this->_maxFileUpload . " MB hochladen. (Standardeinstellung)</p>";
+                }
+                if ($maxstorage > $this->_maxStorage) {
+                    $message .= "<p class='error'>Du kannst maximal " . $this->_maxStorage . " MB als Gesamtspeichergröße eingeben. (Standardeinstellung)</p>";
+                }
+                $this->view->message = $message;
             }
         }
 

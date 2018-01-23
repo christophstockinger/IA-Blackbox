@@ -172,6 +172,7 @@ class Application_Model_Files
             'filename' => $this->getFilename(),
             'filedisplayname' => $this->getFiledisplayname(),
             'fileformat' => $this->getFileformat(),
+            'filetags' => $this->getFiletags(),
             'filesize' => $this->getFilesize(),
             'savelocal' => $this->getSavelocal(),
             'savecloud' => $this->getSavecloud(),

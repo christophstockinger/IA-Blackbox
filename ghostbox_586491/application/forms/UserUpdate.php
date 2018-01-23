@@ -28,21 +28,21 @@ class Application_Form_UserUpdate extends Zend_Form
         $firstname = new Zend_Form_Element_Text('user_firstname');
         $firstname->setLabel('Dein Vorname');
         $firstname->setRequired(true);
-        $firstname->setAttribs(array('class' => 'input', 'placeholder' => 'Dein Vorname'));
+        $firstname->setAttribs(array('class' => 'input', 'placeholder' => 'Dein Vorname', 'required' => ''));
         $firstname->setValue($this->_user->getFirstname());
 
         // field for lastname
         $lastname = new Zend_Form_Element_Text('user_lastname');
         $lastname->setLabel('Dein Nachname');
         $lastname->setRequired(true);
-        $lastname->setAttribs(array('class' => 'input', 'placeholder' => 'Dein Nachname'));
+        $lastname->setAttribs(array('class' => 'input', 'placeholder' => 'Dein Nachname', 'required' => ''));
         $lastname->setValue($this->_user->getLastname());
 
         // field for Passwort
         $password = new Zend_Form_Element_Text('user_password');
         $password->setLabel('Dein Passwort');
         $password->setRequired(true);
-        $password->setAttribs(array('class' => 'input password', 'placeholder' => 'Dein Passwort'));
+        $password->setAttribs(array('class' => 'input password', 'placeholder' => 'Dein Passwort', 'required' => ''));
         $password->setValue($this->_user->getPassword());
 
         // save Button

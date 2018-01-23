@@ -15,7 +15,7 @@ $user = $this->user;
         <?php
         echo $this->form;
 
-        if ($resultdata == 0): ?>
+        if ($resultdata == 0 ||(count($resultdata) == 0) ): ?>
             <div class="col-12 col-sm-12 search-results">
                 <p>Leider keine Einträge gefunden.</p>
             </div>
@@ -49,7 +49,8 @@ $user = $this->user;
                             }
                             ?>
                             <div class="media-body">
-                                <h5 class="mt-0 mb-1"><?php echo $data['filedisplayname']; ?></h5>
+                                <h5><?php echo $data['filedisplayname']; ?></h5>
+                                <p><strong>Tags:</strong> <?php echo (str_replace(";", " ", $data['filetags'])); ?></p>
                                 <div class="buttons">
                                     <a class='download' target='_blank'
                                        href='/data/<?php echo $data['location'] . "/" . $data['filename']; ?>'><?php echo $downloadsvg; ?></a>

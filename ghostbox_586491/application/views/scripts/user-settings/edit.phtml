@@ -7,6 +7,10 @@
         <div class="col-12 col-sm-12 abbruch">
             <a class='button' href="<?php echo $this->url(array('controller' => 'user-settings', 'action' => 'index')); ?>">Abbrechen</a>
         </div>
+
+        <? if(isset($this->message)) {
+            echo $this->message;
+        }?>
         <?php echo $this->form; ?>
     </div>
 

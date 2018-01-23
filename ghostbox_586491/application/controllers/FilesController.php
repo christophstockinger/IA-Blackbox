@@ -32,8 +32,6 @@ class FilesController extends Zend_Controller_Action
         $data = $this->getRequest()->getPost();
 
         if (!empty($data) && isset($data['suchen'])) {
-            // New Mapper
-            $filemapper = new Application_Model_Mappers_RawFiles();
 
             // Explode Tags
             $tags = explode(" ", $data['search']);
@@ -92,21 +90,24 @@ class FilesController extends Zend_Controller_Action
 
         // Get data
         $data = $this->getRequest()->getPost();
-        // Get Filedata
-        $file = new Zend_File_Transfer();
-        // Übergabe von Filedata an data
-        foreach ($file->getFileInfo()['file'] as $key => $filedata) {
-            $data[$key] = $filedata;
-        }
-        $data['namehash'] = base64_encode($data['name']);
-        //$file->receive();
-        // Get Userid
-        $data['userid'] = $this->_thisUser->getId();
-        // Get and edit Fileformat
-        $data['fileformat'] = strtoupper(pathinfo($data['name'], PATHINFO_EXTENSION));
+
 
         // Check ob data gesetzt ist
         if (!empty($data) && isset($data['hochladen'])) {
+
+            // Get Filedata
+            $file = new Zend_File_Transfer();
+            // Übergabe von Filedata an data
+            foreach ($file->getFileInfo()['file'] as $key => $filedata) {
+                $data[$key] = $filedata;
+            }
+            $data['namehash'] = base64_encode($data['name']);
+            //$file->receive();
+            // Get Userid
+            $data['userid'] = $this->_thisUser->getId();
+            // Get and edit Fileformat
+            $data['fileformat'] = strtoupper(pathinfo($data['name'], PATHINFO_EXTENSION));
+
 
             // Mapper erstellen
             $mapper = new Application_Model_Mappers_RawFiles();

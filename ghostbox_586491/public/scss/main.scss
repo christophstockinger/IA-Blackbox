@@ -52,6 +52,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 
+  @media ($md) {
+    background-position: top center;
+  }
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -206,7 +210,7 @@ header {
         display: inline-block;
 
         .welcome {
-          width: 75%;
+          width: 60%;
           font-size: 14px;
           font-family: $regularfont;
           display: inline-block;
@@ -227,10 +231,12 @@ header {
         }
 
         .navbar-nav {
-          width: 25%;
+          width: 40%;
           display: inline-block;
 
           @media($md) {
+            width: 100%;
+
             .dropdown-menu {
               width: 100%;
             }
@@ -239,6 +245,23 @@ header {
           .nav-item {
             margin: 0 25px 0 0;
             display: inline-block;
+
+            @media ($sm) {
+
+              width: 100%;
+              margin: 0 0 25px;
+              text-align: center;
+              vertical-align: top;
+
+              &:first-of-type, &:last-of-type {
+                width: 100%;
+              }
+
+              a {
+                width: 100%;
+                height: 100%;
+              }
+            }
 
             @media ($md) {
 
@@ -256,22 +279,7 @@ header {
                 height: 100%;
               }
             }
-            @media ($sm) {
 
-              width: 100%;
-              margin: 0 0 25px;
-              text-align: center;
-              vertical-align: top;
-
-              &:first-of-type, &:last-of-type {
-                width: 100%;
-              }
-
-              a {
-                width: 100%;
-                height: 100%;
-              }
-            }
 
             a {
               width: 100%;
@@ -324,6 +332,10 @@ main {
 
   @media ($sm) {
     padding: 75px 0 0 0;
+  }
+
+  @media ($md) {
+    padding: 100px 0 0 0;
   }
 
   .page {
@@ -469,54 +481,6 @@ main {
 
           }
 
-          .fileformat-table {
-            width: 100%;
-
-            th, td {
-              padding: 5px;
-              font-size: 14px;
-              font-family: $regularfont;
-              text-align: left;
-            }
-
-            th {
-              font-family: $boldfont;
-              font-size: 14px;
-            }
-
-            td {
-              border-bottom: 1px solid $darkcolor;
-              vertical-align: middle;
-
-              .button {
-                margin: 0 10px 0 0;
-                display: block;
-                float: left;
-                padding: 5px;
-                box-sizing: border-box;
-
-                img, svg {
-                  width: 25px;
-                  height: 25px;
-                  display: block;
-                }
-
-                svg {
-                  fill: $darkcolor;
-
-                  &:hover {
-                    fill: $brightcolor;
-                  }
-                }
-
-                &:hover {
-                  svg {
-                    fill: $brightcolor;
-                  }
-                }
-              }
-            }
-          }
 
           .add {
             display: block;
@@ -811,16 +775,36 @@ main {
                   width: 75%;
                   display: block;
                   float: left;
+                  margin: 0;
 
                   @media ($md) {
                     width: 100%;
                   }
                 }
 
-                .buttons {
-                  width: 25%;
+                p {
+                  font-family: $regularfont;
+                  font-size: 14px;
+                  color: $darkcolor;
+                  width: 75%;
                   display: block;
                   float: left;
+                  margin: 0;
+
+                  @media ($md) {
+                    width: 100%;
+                    font-size: 12px;
+                  }
+
+                  strong {
+                    font-family: $boldfont;
+                  }
+                }
+
+                .buttons {
+                  width: 20%;
+                  display: inline-block;
+                  margin: 0 0 0 3%;
 
                   @media ($md) {
                     width: 100%;
