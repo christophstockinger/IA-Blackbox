@@ -137,16 +137,5 @@ class Application_Model_Mappers_RawUser{
 
         return $deleteid;
     }
-	
-	public function login($id){
-		/*
-		$inputData = array(
-			'LOGINDATE'		=> date('Y-m-d H:i:s')
-		);
-		
-		$row = $this->getTable()->find($id)->current();
-		$row->setFromArray($inputData);
-		$row->save();
-		*/
-	}
+
 }

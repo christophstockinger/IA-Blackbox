@@ -13,7 +13,6 @@
  * Version 1
  **/
 
-console.log("Start!");
 $(document).ready(
     function () {
 
@@ -36,17 +35,14 @@ $(document).ready(
     }
 );
 
-console.log("Fertig!");
+
 
 
 /**
  * Funktion zum Überprüfen, ob die Speicherung in der Cloud aktiviert ist
  */
 function cloudCheck() {
-    console.log("geändert!");
-    console.log($('#savecloud:checked'));
     var checkbox = $('#savecloud:checked').length;
-
     var loc = $('#savelocationcloud');
     var user = $('#usernamecloud');
     var pass = $('#passwordcloud');

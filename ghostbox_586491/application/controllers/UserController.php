@@ -39,58 +39,6 @@ class UserController extends Zend_Controller_Action
         $this->view->user = $this->_thisUser;
     }
 
-    public function listAction()
-    {
-        // action body
-
-        // if already logged in otherwise redirect to start page
-        if (!$this->_thisUser) $this->_redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index', null), 'default', true));
-
-        // create mapper for model user
-        $mapper = new Application_Model_Mappers_RawUser();
-
-        // get all user from table RAW_USER via mapper
-        $rows = $mapper->fetchList();
-
-        // pass the results to the view
-        $this->view->users = $rows;
-
-        // now you can work with the array 'users' in
-        // the view SUPERAPP\application\views\scripts\user\list.phtml
-        // (and in all other views :-))
-    }
-
-    public function viewAction()
-    {
-        // action body
-
-        // if already logged in otherwise redirect to start page
-        if (!$this->_thisUser) $this->_redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index', null), 'default', true));
-
-        // create mapper for model user
-        $mapper = new Application_Model_Mappers_RawUserSettings();
-
-        // get id from querystring
-        $id = $this->getRequest()->getParam('id');
-
-        // if id is not avaliable redirect to user list
-        if (!$id) $this->redirect($this->getHelper('url')->url(array('controller' => 'user', 'action' => 'list', null), 'default', true));
-
-        // get data from database via mapper
-        $row = $mapper->fetchSingleById($id);
-
-        if (!$row) {
-            return $this->_redirect($this->getHelper('url')->url(array('controller' => 'user', 'action' => 'list', null), 'default', true));
-        }
-
-        // pass the results to the view
-        $this->view->user = $row;
-
-        // now you can work with the array 'user' in
-        // the view SUPERAPP\application\views\scripts\user\view.phtml
-        // (and in all other views :-))
-    }
-
     public function createAction()
     {
         // action body
@@ -337,16 +285,6 @@ class UserController extends Zend_Controller_Action
         $this->_redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index', null), 'default', true));
     }
 
-    public function dashboardAction()
-    {
-        // action body
-        if (Zend_Auth::getInstance()->hasIdentity()) {
-            echo "eingeloggt!";
-        } else {
-            $this->_redirect($this->getHelper('url')->url(array('controller' => 'user', 'action' => 'login', null), 'default', true));
-        }
-
-    }
 
 
 }
