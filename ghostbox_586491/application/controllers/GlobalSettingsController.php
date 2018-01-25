@@ -42,6 +42,7 @@ class GlobalSettingsController extends Zend_Controller_Action
         // Formular-Parameter holen
         $data = $this->getRequest()->getPost();
 
+        // Check data
         if ( !is_null($data) && isset($data['speichern']) ) {
 
             $rowadd = 0; // Addition aller geänderten Spalten
@@ -62,6 +63,7 @@ class GlobalSettingsController extends Zend_Controller_Action
             }
 
 
+            // Check ob Speicherung erfolgreich war
             if ($rowadd <= count($data) ) {
                 $this->_redirect($this->getHelper('url')->url(array('controller' => 'global-settings', 'action' => 'index')));
             } else {

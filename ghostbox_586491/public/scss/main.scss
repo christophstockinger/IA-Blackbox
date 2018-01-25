@@ -61,7 +61,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: $boldfont;
   font-weight: bold;
-  line-height: 200%;
+  line-height: 150%;
   margin: 0;
 }
 
@@ -338,11 +338,11 @@ main {
   height: auto;
 
   @media ($sm) {
-    padding: 75px 0 0 0;
+    padding: 75px 0 ;
   }
 
   @media ($md) {
-    padding: 100px 0 0 0;
+    padding: 100px 0;
   }
 
   .page {
@@ -800,6 +800,7 @@ main {
                   @media ($md) {
                     width: 100%;
                     font-size: 12px;
+                    margin: 0 0 25px;
                   }
 
                   strong {
@@ -823,6 +824,10 @@ main {
                     background-color: $brightcolor;
                     display: inline-block;
                     margin: 0 25px 0 0;
+
+                    @media ($md) {
+                      margin: 0 10px 0 0;
+                    }
 
                     &:last-of-type {
                       margin: 0;

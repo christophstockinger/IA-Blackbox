@@ -50,10 +50,6 @@ class UserController extends Zend_Controller_Action
 
         $data = $this->getRequest()->getPost();
 
-        // if (($data['firstname'] == "") || ($data['lastname'] == "") || ($data['email'] == "") || ($data['password'] == "")) {
-        //     $this->_redirect($this->getHelper('url')->url(array('controller' => 'user', 'action' => 'create', null), 'default', true));
-        // }
-
         if (!empty($data) && !is_null($data['registrieren'])) {
 
             $mapper = new Application_Model_Mappers_RawUser();
@@ -71,7 +67,6 @@ class UserController extends Zend_Controller_Action
 
             // Check ob User erstellt wurde
             if ($row == ($lastUserid + 1)) {
-                // TODO Ordner anlegen und Raw_User_Settings anlegen!!!!
                 // lokalen Speicherordner erstellen
                 $foldername = $row . "-" . $data['user_lastname'] . "-" . $data['user_firstname'];
                 $foldernamehash = md5($foldername);
@@ -140,6 +135,7 @@ class UserController extends Zend_Controller_Action
         // Formularinhalte holen
         $data = $this->getRequest()->getPost();
 
+        // check data
         if (!empty($data) && !is_null($data['speichern'])) {
             // get userid from request data
             $userid = (int)$data['user_id'];

@@ -42,33 +42,36 @@ class FilesController extends Zend_Controller_Action
             $resultdata = array();
 
             if ($results == null) {
-               $resultdata = 0;
+                $resultdata = 0;
             } else {
 
                 if (!$this->_thisUser) {
                     // Keine User angemeldet
                     // nur public Dateien
                     foreach ($results as $result) {
-                        $result = $result->toArray();
+                        $result = $result->toArray(); // zum Array umwandeln
                         $locationmapper = new Application_Model_Mappers_RawUserSettings();
-                        $result['location'] = $locationmapper->fetchSingleByUserId($result['userid'])->getSaveLocationLocal();
-                        if ($result['public'] == 1) {
-                            $resultdata[] = $result;
+                        $result['location'] = $locationmapper->fetchSingleByUserId($result['userid'])->getSaveLocationLocal(); // Speicherort holen
+                        if ($result['public'] == 1) { // Check public state of File
+                            if (!in_array($result, $resultdata)) { // Check File not exist in output array
+                                $resultdata[] = $result;
+                            }
                         }
                     }
                 } else {
                     // User angemeldet
                     // nur seine Dateien
                     foreach ($results as $result) {
-                        $result = $result->toArray();
+                        $result = $result->toArray(); // zum Array umwandeln
                         $locationmapper = new Application_Model_Mappers_RawUserSettings();
-                        $result['location'] = $locationmapper->fetchSingleByUserId($result['userid'])->getSaveLocationLocal();
-                        if ($result['userid'] == $this->_thisUser->getId()) {
-                            $resultdata[] = $result;
+                        $result['location'] = $locationmapper->fetchSingleByUserId($result['userid'])->getSaveLocationLocal(); // Speicherort holen
+                        if ($result['userid'] == $this->_thisUser->getId()) {// Check angemeldeter User is owner of file
+                            if (!in_array($result, $resultdata)) { // Check File not exist in output array
+                                $resultdata[] = $result;
+                            }
                         }
                     }
                 }
-
 
 
             }
@@ -102,7 +105,7 @@ class FilesController extends Zend_Controller_Action
                 $data[$key] = $filedata;
             }
             $data['namehash'] = base64_encode($data['name']);
-            //$file->receive();
+
             // Get Userid
             $data['userid'] = $this->_thisUser->getId();
             // Get and edit Fileformat
@@ -180,7 +183,7 @@ class FilesController extends Zend_Controller_Action
                                     if ($fileid != 0) {
                                         // lokale Speicherung
                                         move_uploaded_file($tmpName, $localFilepath);
-                                        // TODO API anfragen
+                                        /* Eigentlich wäre hier noch API Anfrage vorgesehen gewesen. Umsetzung in meinen Augen jedoch nicht möglich */
                                         $this->redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index'), 'default', true));
                                     } else {
                                         // Fehlermeldung für DB-Write-Fehler
@@ -213,7 +216,7 @@ class FilesController extends Zend_Controller_Action
                                     $fileid = $mapper->create($data);
 
                                     if ($fileid != 0) {
-                                        // TODO API anfragen
+                                        /* Eigentlich wäre hier noch API Anfrage vorgesehen gewesen. Umsetzung in meinen Augen jedoch nicht möglich */
                                         $this->redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index'), 'default', true));
                                     } else {
                                         // Fehlermeldung für DB-Write-Fehler
@@ -257,7 +260,6 @@ class FilesController extends Zend_Controller_Action
         $fileid = $this->getRequest()->getParam('fileid');
 
 
-
         // get data
         $data = $this->getRequest()->getPost();
 
@@ -269,10 +271,10 @@ class FilesController extends Zend_Controller_Action
             // Check ob Filedaten geändert wurden
             if ($row != 0) {
                 // Ja
-                    $this->redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index'), 'default', true));
+                $this->redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index'), 'default', true));
             } else {
                 // Nein
-                    $this->view->errormessage = "Beim Speichern ist ein Fehler unterlaufen.";
+                $this->view->errormessage = "Beim Speichern ist ein Fehler unterlaufen.";
             }
 
         }
@@ -293,20 +295,24 @@ class FilesController extends Zend_Controller_Action
         // check auth
         if (!$this->_thisUser) $this->_redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index', null), 'default', true));
 
+        // get File-ID
         $fileid = $this->getRequest()->getParam('fileid');
-
 
         $form = new Application_Form_FilesDelete($fileid);
 
+        // get data
         $data = $this->getRequest()->getPost();
 
+        // check data
         if (!empty($data) && isset($data['löschen'])) {
             $mapper = new Application_Model_Mappers_RawFiles();
-            $filedelete = $mapper->delete( (int)$fileid );
+            $filedelete = $mapper->delete((int)$fileid);
 
             if ($filedelete) {
+                // Delete erfolgreich
                 $this->view->message = "Die Datei wurde erfolgreich gelöscht.";
             } else {
+                // Delete nicht erfolgreich
                 $this->view->form = $form;
             }
         }

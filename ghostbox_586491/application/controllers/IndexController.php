@@ -21,7 +21,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        //if (!$this->_thisUser) $this->_redirect($this->getHelper('url')->url(array('controller' => 'index', 'action' => 'index', null), 'default', true));
+        // Ausgabe der Suchform
         $form = new Application_Form_FilesSearch();
         $this->view->form = $form;
 

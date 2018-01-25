@@ -57,6 +57,7 @@ class UserSettingsController extends Zend_Controller_Action
         // Formularinhalte vom Absenden holen
         $data = $this->getRequest()->getPost();
 
+        // Check data
         if (!empty($data) && !is_null($data['speichern'])) {
             // User-ID
             $userid = (int)$data['userid'];
